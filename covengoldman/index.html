@@ -1,0 +1,839 @@
+<?php include "mail.php"; ?>
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet" href="css/bootstrap-theme.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/animate.css">
+        <script src="http://maps.google.com/maps/api/js?sensor=false&libraries=places" type="text/javascript"></script>
+        <?php include('includes/header.php'); ?>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASm3CwaK9qtcZEWYa-iQwHaGi3gcosAJc&sensor=false"></script>
+ <script type="text/javascript">      
+   // When the window has finished loading create our google map below
+  google.maps.event.addDomListener(window, 'load', init);
+
+  function init() {
+
+      var myLatLng = new google.maps.LatLng(41.459035,-81.508451);
+      var buildingone = new google.maps.LatLng(41.416583,-81.792444);
+      var buildingtwo = new google.maps.LatLng(41.469454,-81.946853);
+      var buildingthree = new google.maps.LatLng(41.399894,-81.461202);
+      var buildingfour = new google.maps.LatLng(41.282918,-81.628164);
+      var buildingfive = new google.maps.LatLng(41.398751,-81.777252);
+      var buildingsix = new google.maps.LatLng(41.423373,-81.499396);
+      // Basic options for a simple Google Map
+      // For more options see: https://developers.google.com/maps/documentation/javascript/reference#MapOptions
+      var mapOptions = {
+          // How zoomed in you want the map to start at (always required)
+          zoom: 11,
+
+          scrollwheel: false,
+
+           disableDefaultUI: true,     
+
+          // The latitude and longitude to center the map (always required)
+          center: new google.maps.LatLng(41.459035,-81.508451), // New York
+
+          // How you would like to style the map. 
+          // This is where you would paste any style found on Snazzy Maps.
+          styles: [{
+              featureType: 'water',
+              elementType: 'all',
+              stylers: [{
+                  hue: '#edcf53'
+              }, {
+                  saturation: 100
+              }, {
+                  lightness: 75
+              }, {
+                  visibility: 'simplified'
+              }]
+          }, {
+              featureType: 'landscape',
+              elementType: 'all',
+              stylers: [{
+                  hue: '#edcf53'
+              }, {
+                  saturation: 100
+              }, {
+                  lightness: 0
+              }, {
+                  visibility: 'simplified'
+              }]
+          }, {
+              featureType: 'road',
+              elementType: 'geometry',
+              stylers: [{
+                  hue: '#edcf53'
+              }, {
+                  saturation: 100
+              }, {
+                  lightness: 0
+              }, {
+                  visibility: 'simplified'
+              }]
+          }, {
+              featureType: 'poi',
+              elementType: 'all',
+              stylers: [{
+                  hue: '#edcf53'
+              }, {
+                  saturation: 100
+              }, {
+                  lightness: 0
+              }, {
+                  visibility: 'off'
+              }]
+          }, {
+              featureType: 'road.local',
+              elementType: 'geometry',
+              stylers: [{
+                  hue: '#edcf53'
+              }, {
+                  saturation: 100
+              }, {
+                  lightness: 50
+              }, {
+                  visibility: 'simplified'
+              }]
+          }, {
+              featureType: 'transit',
+              elementType: 'all',
+              stylers: [{
+                  hue: '#edcf53'
+              }, {
+                  saturation: 100
+              }, {
+                  lightness: 50
+              }, {
+                  visibility: 'on'
+              }]
+          }, {
+              featureType: 'administrative.locality',
+              elementType: 'all',
+              stylers: [{
+                  hue: '#2c2e33'
+              }, {
+                  saturation: 7
+              }, {
+                  lightness: 19
+              }, {
+                  visibility: 'on'
+              }]
+          }, {
+              featureType: 'road.highway',
+              elementType: 'labels.text.fill',
+              stylers: [{
+                  hue: '#372e2f'
+              }, {
+                  saturation: -75
+              }, {
+                  lightness: -25
+              }, {
+                  visibility: 'on'
+              }]
+          }, {
+              featureType: 'road.highway',
+              elementType: 'labels.icon',
+              stylers: [{
+                  hue: '#372e2f'
+              }, {
+                  saturation: -75
+              }, {
+                  lightness: -25
+              }, {
+                  visibility: 'on'
+              }]
+          }, {
+              featureType: 'road.local',
+              elementType: 'labels.text.fill',
+              stylers: [{
+                  hue: '#372e2f'
+              }, {
+                  saturation: -75
+              }, {
+                  lightness: -25
+              }, {
+                  visibility: 'on'
+              }]
+          }, {
+              featureType: 'poi',
+              elementType: 'labels.text.fill',
+              stylers: [{
+                  hue: '#372e2f'
+              }, {
+                  saturation: -75
+              }, {
+                  lightness: -25
+              }, {
+                  visibility: 'on'
+              }]
+          }, {
+              featureType: 'administrative',
+              elementType: 'labels.text.fill',
+              stylers: [{
+                  hue: '#372e2f'
+              }, {
+                  saturation: -75
+              }, {
+                  lightness: -25
+              }, {
+                  visibility: 'on'
+              }]
+          }, {
+              featureType: 'road.arterial',
+              elementType: 'labels.fill',
+              stylers: [{
+                  hue: '#372e2f'
+              }, {
+                  saturation: -100
+              }, {
+                  lightness: 0
+              }, {
+                  visibility: 'simplified'
+              }]
+          }]
+      };
+
+      // Get the HTML DOM element that will contain your map 
+      // We are using a div with id="map" seen below in the <body>
+      var mapElement = document.getElementById('map');
+      // Create the Google Map using out element and options defined above
+      var map = new google.maps.Map(mapElement, mapOptions);
+
+      var image = 'img/marker.png';
+    var office = new google.maps.Marker({
+      position: myLatLng,
+      map: map,
+      animation: google.maps.Animation.BOUNCE,
+      icon: image,
+      title: 'Coven-Goldman'
+    });
+
+        myInfoWindowOptions = {
+    content: '<div class="hideonmob info-window-content"><h4>Hello! This is our office. </h4><p>Please click on the other locations to see information on our properties.</p><p><img style="width:20px" src="img/logosmall.png"></p></div>',
+    maxWidth: 275
+  };
+
+  infoWindow = new google.maps.InfoWindow(myInfoWindowOptions);
+
+  google.maps.event.addListener(office, 'click', function() {
+    infoWindow.open(map,office);
+  });
+
+  google.maps.event.addListener(office, 'dragstart', function(){
+    infoWindow.close();
+  });
+
+  google.maps.event.addListener(office, 'mouseover', function(){
+    infoWindow.close();
+  });
+
+  infoWindow.open(map,office);
+
+
+
+      var image = 'img/marker.png';
+    var marker2 = new google.maps.Marker({
+      position: buildingone,
+      map: map,
+      animation: google.maps.Animation.DROP,
+      icon: image,
+      title: 'Coven-Goldman'
+    });
+
+
+        myInfoWindowOptions = {
+    content: '<div class="hideonmob info-window-content"><h4>24475 Hilltop Dr <br> Beachwood, OH </h4><p>Please click on the other locations to see information on our properties.</p><p><img style="width: 100%;" src="img/23800CommerceShad.jpg"></p></div>',
+    maxWidth: 275
+  };
+
+  infoWindow2 = new google.maps.InfoWindow(myInfoWindowOptions);
+
+  google.maps.event.addListener(marker2, 'click', function() {
+    infoWindow2.open(map,marker2);
+  });
+
+  google.maps.event.addListener(marker2, 'click', function() {
+    infoWindow.close(infoWindow,infoWindow3,infoWindow4,infoWindow5,infoWindow6);
+  });
+
+  google.maps.event.addListener(marker2, 'dragstart', function(){
+    infoWindow2.close();
+  });
+
+ google.maps.event.addListener(marker2, 'mouseover', function(){
+    infoWindow2.close();
+  });
+
+
+ var image = 'img/marker.png';
+    var marker3 = new google.maps.Marker({
+      position: buildingtwo,
+      map: map,
+      animation: google.maps.Animation.DROP,
+      icon: image,
+      title: 'Coven-Goldman'
+    });
+
+
+             myInfoWindowOptions = {
+    content: '<div class="hideonmob info-window-content"><h4>24475 Hilltop Dr <br> Beachwood, OH </h4><p>Please click on the other locations to see information on our properties.</p><p><img style="width: 100%;" src="img/23800CommerceShad.jpg"></p></div>',
+    maxWidth: 275
+  };
+
+  infoWindow3 = new google.maps.InfoWindow(myInfoWindowOptions);
+
+  google.maps.event.addListener(marker3, 'click', function() {
+    infoWindow3.open(map,marker3);
+  });
+
+  google.maps.event.addListener(marker3, 'dragstart', function(){
+    infoWindow3.close();
+  });
+
+ google.maps.event.addListener(marker3, 'mouseover', function(){
+    infoWindow3.close();
+  });
+
+
+ var image = 'img/marker.png';
+    var marker4 = new google.maps.Marker({
+      position: buildingthree,
+      map: map,
+      animation: google.maps.Animation.DROP,
+      icon: image,
+      title: 'Coven-Goldman'
+    });
+
+
+                 myInfoWindowOptions = {
+    content: '<div class="hideonmob info-window-content"><h4>24475 Hilltop Dr <br> Beachwood, OH </h4><p>Please click on the other locations to see information on our properties.</p><p><img style="width: 100%;" src="img/23800CommerceShad.jpg"></p></div>',
+    maxWidth: 275
+  };
+
+  infoWindow4 = new google.maps.InfoWindow(myInfoWindowOptions);
+
+  google.maps.event.addListener(marker4, 'click', function() {
+    infoWindow4.open(map,marker4);
+  });
+
+  google.maps.event.addListener(marker4, 'dragstart', function(){
+    infoWindow4.close();
+  });
+
+  google.maps.event.addListener(marker4, 'mouseover', function(){
+    infoWindow4.close();
+  });
+
+ var image = 'img/marker.png';
+    var marker = new google.maps.Marker({
+      position: buildingfour,
+      map: map,
+      animation: google.maps.Animation.DROP,
+      icon: image,
+      title: 'Coven-Goldman'
+    });
+
+ var image = 'img/marker.png';
+    var marker6 = new google.maps.Marker({
+      position: buildingfive,
+      map: map,
+      animation: google.maps.Animation.DROP,
+      icon: image,
+      title: 'Coven-Goldman'
+    });
+
+
+    myInfoWindowOptions = {
+    content: '<div class="hideonmob info-window-content"><h4>10200 Brecksville Rd <br> Brecksville, OH</h4><p>20,000 sq ft <br> more info here <br></p><p><img style="width:20px" src="img/logosmall.png"></p></div>',
+    maxWidth: 275
+  };
+
+  infoWindow6 = new google.maps.InfoWindow(myInfoWindowOptions);
+
+  google.maps.event.addListener(marker6, 'click', function() {
+    infoWindow6.open(map,marker6);
+  });
+
+  google.maps.event.addListener(marker6, 'dragstart', function(){
+    infoWindow6.close();
+  }); 
+
+  google.maps.event.addListener(marker6, 'mouseover', function(){
+    infoWindow6.close();
+  });
+
+ var image = 'img/marker.png';
+    var merc23945 = new google.maps.Marker({
+      position: buildingsix,
+      map: map,
+      animation: google.maps.Animation.DROP,
+      icon: image,
+      title: 'Coven-Goldman'
+    });
+
+myInfoWindowOptions = {
+    content: '<div class="hideonmob info-window-content"><h4>23945 Mercantile Rd <br> Beachwood, OH</h4><p>20,000 sq ft <br> more info here <br></p><p><img style="width: 100%;" src="img/23800CommerceShad.jpg"></p></div>',
+    maxWidth: 275
+  };
+
+  infoWindowmerc23945 = new google.maps.InfoWindow(myInfoWindowOptions);
+
+  google.maps.event.addListener(merc23945, 'click', function() {
+    infoWindowmerc23945.open(map,merc23945);
+  });
+
+  google.maps.event.addListener(merc23945, 'dragstart', function(){
+    infoWindowmerc23945.close();
+  });  
+
+  google.maps.event.addListener(merc23945, 'mouseover', function(){
+    infoWindowmerc23945.close();
+  });
+}
+</script>
+
+
+<script>
+    $(function(){
+      
+      var $container = $('#container');
+
+      $container.isotope({
+        itemSelector : '.element'
+      });
+      
+      
+      var $optionSets = $('#options .option-set'),
+          $optionLinks = $optionSets.find('a');
+
+      $optionLinks.click(function(){
+        var $this = $(this);
+        // don't proceed if already selected
+        if ( $this.hasClass('selected') ) {
+          return false;
+        }
+        var $optionSet = $this.parents('.option-set');
+        $optionSet.find('.selected').removeClass('selected');
+        $this.addClass('selected');
+  
+        // make option object dynamically, i.e. { filter: '.my-filter-class' }
+        var options = {},
+            key = $optionSet.attr('data-option-key'),
+            value = $this.attr('data-option-value');
+        // parse 'false' as false boolean
+        value = value === 'false' ? false : value;
+        options[ key ] = value;
+        if ( key === 'layoutMode' && typeof changeLayoutMode === 'function' ) {
+          // changes in layout modes need extra logic
+          changeLayoutMode( $this, options )
+        } else {
+          // otherwise, apply new options
+          $container.isotope( options );
+        }
+        
+        return false;
+      });
+
+      
+    });
+  </script>
+
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+    <div class="widthnav navbar navbar-inverse navbar-fixed-top animated fadeInDown">
+      <div class="container centerme">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <div class="bounce">
+          <a class="navbar-brand animated fadeInDown" href="#home"><img src="img/logosmall.png"></a>
+        </div>
+      </div>
+        <div class="navbar-collapse collapse">
+          <ul id="nav" class="nav navbar-nav mar-80-t">
+            <li class="active"><a href="#home">HOME</a></li>
+            <li><a class="" href="#about1">ABOUT</a></li>
+            <li><a class="" href="#property">PROPERTY</a></li>
+            <li><a class="" href="#services">SERVICES</a></li>
+            <li><a class="" href="#contact">CONTACT</a></li>
+            <!-- drop down
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li class="divider"></li>
+                <li class="dropdown-header">Nav header</li>
+                <li><a href="#">Separated link</a></li>
+       
+       <li class="spaceitout"></li>         <li><a href="#">One more separated link</a></li> -->
+              </ul>
+            </li>
+          </ul>
+        </div><!--/.navbar-collapse -->
+      </div>
+
+    </div>
+
+<div class="animated fadeInDown moboverflow" id="sidenavi"> <!--sidenavigation container-->
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div id="home" class="row goldbreak lrgimg pad-90-t white">
+      <div class="container overflow-hide">
+      <div id="intro" class="container pad-30-lr buildings">
+        <div class="">
+        <!-- <span class="weare alone align-left centerh1"><span class="wearemob">WE ARE</span> -->
+          <br>
+        <h1jumbo class="t-a-center alone">COVEN GOLDMAN</h1jumbo></span>
+      </div>
+       <!-- <img class="alone center" src="img/buildingsnobg.png"> -->
+       <div class="spaceitout"></div>
+        <p class="locationinfo center-text">CLEVELAND <span class="verticleline">|</span> OHIO <span class="verticleline">|</span>  REAL ESTATE</p>
+      </div>
+    </div>
+  </div>
+
+<div class="row goldbreak bg-gray">
+    <div id="about1" class="container pad-30-lr mar-30-b ">
+      <h1 class="col-sm-12 font-size-15 pad-64-lr mar-50-t"> OUR STORY </h1>
+      <div class="col-sm-12 pad-64-lr pad-50-tb pad-20-t line175"><p class="two-col"> <!-- <span class="dropcap">C</span>-->Coven-Goldman Associates is a full service commercial real estate firm.  We specialize in real estate development, real estate brokerage and property management.  Located in Cleveland, Ohio, Coven-Goldman Associates and related entities own and manage over 1,500,000 square feet of single-story office and warehouse buildings.  These buildings are situated in different suburban areas in and around Greater Cleveland.  Each building provides excellent highway access and both functional and attractive space.  Most buildings have been developed within the last 30 years. <br> <br> Availability of space is constantly changing.  To find available Coven-Goldman space, go to our Available Properties page or give us a call at (216) 464-2140, either Marcia Coven, Larry Coven or Brad Coven, SIOR will be happy to provide you with an update on our available properties.  Each of our properties has individual floor plans for each suite and/or building.  Go to our Buildings page and choose a building to see site plans and floor plans for available spaces.
+<br>
+Our buildings have been designed to accommodate office and warehouse tenants in the 2,000 square foot to 20,000 square foot range, although smaller and larger units do occasionally become available. Some of our current tenants include Allen-Bradley Co., Dal-Tile, Citi Financial, Uddeholm Steel, Orkin, Invacare, Motorola, Goodyear, Ameritech, Ryan Homes and many other national and local companies.
+ <br><br>
+Coven-Goldman Associates has been involved in industrial and commercial real estate since the 1950's. Today, Coven-Goldman Associates provides leasing, property and asset management, acquisition, development, build-to-suit and real estate brokerage services</P></div>
+      </div>
+      </div>
+
+   <div class="row pad-70-b goldbreak bg-white">
+    <div id="about2" class="container pad-30-lr">
+      <h1 class="col-sm-12 pad-64-lr font-size-15 mar-50-t"> OUR TEAM </h1>
+      <!-- Example row of columns -->
+      <div class="tabincontainer pad-50-lr socialcentermob">
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 picdrop ">
+          <img class="profilepic desaturate" src="img/kenny.png">
+          <div class="socialimg t-a-center">
+          <h4>KENNY COVEN</h4>
+          <p class="undername">Sales & Broker </p>
+              <a href="http://www.facebook.com">
+              <img class="profileimgtop" style="position:absolute;" src="img/facebook.png">
+              <img class="profileimgbottom" src="img/facebook_hover.png"> 
+              </a>
+              <a href="http://www.linkedin.com">
+              <img class="profileimgtop" style="position:absolute;" src="img/linkedin.png"> 
+              <img class="profileimgbottom" src="img/linkedin_hover.png">
+              </a>
+              <a href="http://www.skype.com">
+              <img class="profileimgtop" style="position:absolute;" src="img/skype.png"> 
+              <img class="profileimgbottom" src="img/skype_hover.png">
+              </a>
+            </div>
+        </div>
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 picdrop ">
+          <img class="profilepic desaturate" src="img/marcia.png">
+           <div class="socialimg t-a-center">
+          <h4>MARCIA COVEN</h4>
+          <p class="undername">Managment and Sales </p>
+              <a href="http://www.facebook.com">
+              <img class="profileimgtop" style="position:absolute;" src="img/facebook.png">
+              <img class="profileimgbottom" src="img/facebook_hover.png"> 
+              </a>
+              <a href="http://www.linkedin.com">
+              <img class="profileimgtop" style="position:absolute;" src="img/linkedin.png"> 
+              <img class="profileimgbottom" src="img/linkedin_hover.png">
+              </a>
+              <a href="http://www.skype.com">
+              <img class="profileimgtop" style="position:absolute;" src="img/skype.png"> 
+              <img class="profileimgbottom" src="img/skype_hover.png">
+              </a>
+            </div>
+       </div>
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 picdrop ">
+          <img class="profilepic desaturate" src="img/brad.png">
+          <div class="socialimg t-a-center">
+          <h4>BRAD COVEN</h4>
+          <p class="undername">Sales Associate</p>
+              <a href="http://www.facebook.com">
+              <img class="profileimgtop" style="position:absolute;" src="img/facebook.png">
+              <img class="profileimgbottom" src="img/facebook_hover.png"> 
+              </a>
+              <a href="http://www.linkedin.com">
+              <img class="profileimgtop" style="position:absolute;" src="img/linkedin.png"> 
+              <img class="profileimgbottom" src="img/linkedin_hover.png">
+              </a>
+              <a href="http://www.skype.com">
+              <img class="profileimgtop" style="position:absolute;" src="img/skype.png"> 
+              <img class="profileimgbottom" src="img/skype_hover.png">
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+     <div class="row goldbreak overflow-hide">
+      <div id="property" class="container pad-30-lr">
+      <h1 class="col-sm-12 font-size-15 mar-50-t pad-64-lr maptextfix"> OUR PROPERTY </h1>
+      <!-- Example row of columns -->
+      <div class="tabincontainer map-pad-50-lr mapfixer">
+        <div id="container">
+<!--
+          <script>
+          $('#container').isotope({ filter: '.metal' });
+          </script>
+
+            <div id="container">
+              <div class="element transition metal">...</div>
+              <div class="element post-transition metal">...</div>
+              <div class="element alkali metal">...</div>
+              <div class="element transition metal">...</div>
+              <div class="element lanthanoid metal inner-transition">...</div> 
+              <div class="element halogen nonmetal">...</div> 
+              <div class="element alkaline-earth metal">...</div>
+              ...
+            </div>
+              
+              <ul id="filters">
+                <li><a href="#" data-filter="*">show all</a></li>
+                <li><a href="#" data-filter=".metal">metal</a></li>
+                <li><a href="#" data-filter=".transition">transition</a></li>
+                <li><a href="#" data-filter=".alkali, .alkaline-earth">alkali and alkaline-earth</a></li>
+                <li><a href="#" data-filter=":not(.transition)">not transition</a></li>
+                <li><a href="#" data-filter=".metal:not(.transition)">metal but not transition</a></li>
+              </ul>
+          -->
+          <div id="map" class="mar-50-t goldbreak">
+          </div>
+
+            <div id="map_overlay">
+      <p class="address"><a href="http://g.co/maps/498ub" target="_blank"><strong>CovenGoldman</strong><br> 23945 Mercantile Rd
+   <br>Suite N<br>Cleveland OH 44122<br><span>Directions<span class="arrow">&rarr;</span></span></a></p>
+      <p>phone: (216)  464 - 2140<br>fax: (216)  350 - 3750<br><a href="mailto:people@someoddpilot.com">info@coven-goldman.com</a></p>
+      <p>
+        </p><div id="mc_embed_signup">
+          <form action="http://someoddpilot.us1.list-manage.com/subscribe/post?u=b9f224a574a7e7c5faafe2216&amp;id=e61164de8d" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank">
+            <div class="mc-field-group">
+              <input type="email" value="Email Availabilites List" name="EMAIL" class="required email toggleval" id="mce-EMAIL">
+            </div>
+            <input type="submit" value="Signup" name="subscribe" id="mc-embedded-subscribe" class="button">
+            <div class="clear"></div>
+            <div id="mce-responses" class="clear">
+              <div class="response" id="mce-error-response" style="display:none"></div>
+              <div class="response" id="mce-success-response" style="display:none"></div>
+            </div>    
+          </form>
+        </div>
+      <p></p>
+      <ul style="padding:0px;">
+        <li><a href="http://www.facebook.com/covengoldman" target="_blank" class="facebook"><img src="img/facebook.png"> Like Our Facebook</a></li>
+        <li><a href="http://www.twitter.com/covengoldman" target="_blank" class="twitter"><img src="img/twitter.png"> Follow Our Twitter</a></li>
+      </ul>
+    </div>
+
+          </div>
+      </div>
+      <h3 class="col-sm-12 font-size-15 pad-64-lr mar-50-t pad-20-b"> FILTER BY AREA </h3>
+    <div class="col-xs-12 col-sm-12 pad-64-lr mar-30-tb pad-20-b mob-font-8"><span class="filterareafirst">BEACHWOOD</span>•<span class="filterarea">BEDFORD HGHTS</span>•<span class="filterarea">BRECKSVILLE</span>•<span class="filterarea">BROOKPARK</span>•
+    <span class="filterarea">BEREA</span>•<span class="filterarea">CLEVELAND</span>•<span class="filterarea">TWINSBURG</span>•<span class="filterarea">WESTLAKE</span>•<span class="filterarealast">PARMA</span></div>
+    </div>
+  </div>
+  <div class="row bg-gray goldbreak pad-70-b">
+    <div id="services" class="container pad-30-lr">
+      <h3 class="col-sm-12 font-size-15 pad-64-lr mar-50-t pad-20-b"> OUR SERVICES </h3>
+      <!-- Example row of columns -->
+      <div class="tabincontainer pad-50-lr mar-40-t">
+        <div class="col-md-6 col-lg-6">
+          <h4>BROKERAGE</h4>
+          <p>Coven Goldman Associates is a real estate brokerage firm based in Cleveland, Ohio, specializing in the representation of landlords, tenants and users of office and industrial real estate.  Since the 1950’s, Coven Goldman Associates has leased and sold millions of square feet of commercial space in and around the Greater Cleveland area and around the country. 
+  <br><br>
+The brokers at Coven Goldman Associates are true professionals with the ability to handle both landlord and tenant representation competently, creatively, and with integrity.  The firm is constantly aware of changing market trends and conditions.  Coven Goldman Associates has been noted for expertise in areas such as construction management, office rehabbing, and land sales and land leases.  The company has been instrumental in obtaining tax incentives for clients and has assisted with lease renewal and expansion negotiations and site selection for many companies.  Additionally, Coven Goldman Associates has completed many build-to-suit projects.  Coven Goldman Associates provides their clients with the highest level of service and results.  Finally, a principal at Coven Goldman, Bradley Coven, SIOR is affiliated with The National Association of Realtors and is an Individual Member of The Society of Industrial and Office REALTORS. </p>
+          <p><a class="btn btn-default mar-10-t" href="#">ASK US </a></p>
+        </div>
+        <div class="col-md-6 col-lg-6 mgmt-mar">
+          <h4>MANAGEMENT</h4>
+          <p>Ruma Management is the Cleveland Commercial Property Management Division of Coven-Goldman Associates.
+ 
+We provide commercial management services for a variety of property types.  Whether your building provides a home to your company or is part of an investment portfolio, a poorly managed building will make even the most promising asset fail to meet owner expectations.  RUMA Management will help your property live up to its full potential.
+ <br><br>
+RUMA Management’s team has first-hand experience with the issues and opportunities in residential and commercial properties. We understand the economic environment and are well-equipped to maintain and enhance the value of each property we manage.
+Procuring tenants and maintaining their satisfaction are the foundation of a successful building. Our specialty is managing your commercial assets to maximize bottom line profits, keep tenants, and minimize your investment risk.
+ <br><br>
+Whether your property is Class "A" or Class "C", large or small, we can handle it. We recognize that different types of properties need to be managed in different ways.  Each commercial property can and should be managed in a way that maximizes the properties potential, holds to the owner's standard in terms of care and maintenance, and gets the appropriate attention in all aspects of property management including billing, maintenance, tenant negotiations, vendor relations, security, collections, follow-up and service. 
+          <p><a class="btn btn-default mar-10-t" href="#">ASK US </a></p>
+       </div>
+      
+        <div class="row pad-14-lr servicelist">
+        <div class="col-md-12 col-lg-12 mgmt-mar" style="padding:0px;">
+          <h4>SERVICES</h4>
+          <p>
+<strong>Below is a list of some of our services:</strong>
+<ul>
+<li>Assessment and Long Term Planning</li>
+<li>Customize our services to meet your unique interests and needs</li>
+<li>Supervise all on-site personnel</li>
+<li>Receive and process all service requests</li>
+<li>Negotiate and maintain all third party vendor contracts and communication</li><span class="pull-right-mar">
+<li>Leverage our buying power</li>
+<li>Provide property accounting services</li>
+<li>Deliver detailed monthly reporting to ownership</li>
+<li>Provide Lease Administration Services</li>
+<li>Receiver Services Available </li></ul></p>
+<p><a class="btn btn-default mar-10-t" href="#">ASK US </a></p>
+</span>
+      </div>
+      </div>
+      </div>
+    </div>
+    </div>
+    <div id="contact">
+      <!-- Example row of columns -->
+          <div class="container pad-50">
+            <h3 class="col-sm-12 font-size-15 contactfix pad-20-b"> CONTACT US </h3>
+                        <div class="row">
+                              <form action="mail.php" method="post">
+                                <div class="span3 col-sm-4 pad-45-lr">
+                                <div class="contactlabel"><label>Full Name</label> <input type="text" name="name" class="span3" placeholder=
+                                "Your First Name"></div>
+                                <div class="contactlabel"><label>Organization</label> <input type="text" name="company" class="span3" placeholder=
+                                "Your Company"></div>
+                                <div class="contactlabel"><label>Email Address</label> <input type="text" name="email" class="span3" placeholder=
+                                "Your email address"></div> <label>Subject</label>
+                                <select class="span3 long" id="subject" name="subject">
+                                    <option selected value="na">
+                                        Choose One:
+                                    </option>
+                                    
+                                    <option value="Brokerage" ><?php if ($subject == 1 ) echo 'selected'; ?>
+                                        Brokerage
+                                    </option>
+
+                                    <option value="Property Management"> <?php if ($subject == 2 ) echo 'selected'; ?>
+                                        Property Management
+                                    </option>
+
+                                    <option value="General Customer Service"> <?php if ($subject == 3 ) echo 'selected'; ?>
+                                        General Customer Service
+                                    </option>
+                    
+                                    <option value="Suggestions or Questions"> <?php if ($subject == 4 ) echo 'selected'; ?>
+                                        Suggestions or Questions
+                                    </option>
+                
+                                </select>
+                            </div>
+                            <div class="col-sm-8">
+                            <div class="span5 message5">
+                                <label>Message</label> 
+                                <textarea class="input-xlarge span5" id="message" name="message"
+                                rows="10">
+                                </textarea>
+                            <button type="submit"class="btn btn-primary mar-26-t message5" value="send">Submit</button>
+                          </div>
+                        </div>
+                    </form>
+
+                  </div>
+
+
+                  </div>
+                </div>
+        </div>
+      </div>
+    </div>
+  </div>
+      <div class="footer"><p style="padding-left:15px;" class="pull-left">&copy; CovenGoldman 2013</p> <p style="padding-right:15px;" class="pull-right">terms | privacy</p></div>
+    </div> <!-- /container --> 
+  </div> <!-- sidenavicontainer -->
+        <script src="js/vendor/jquery-1.10.1.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.1.min.js"><\/script>')</script>
+        <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+        <script src="js/vendor/bootstrap.min.js"></script> 
+        <script src="js/plugins.js"></script>
+        <script src="js/main.js"></script>
+        <script src="js/vendor/jquery.isotope.min.js"></script>
+        <script src="js/vendor/jquery-scrollspy.js"></script>
+
+        <script> // Cache selectors
+var lastId,
+    topMenu = $("#nav"),
+    topMenuHeight = topMenu.outerHeight()+100,
+    // All list items
+    menuItems = topMenu.find("a"),
+    // Anchors corresponding to menu items
+    scrollItems = menuItems.map(function(){
+      var item = $($(this).attr("href"));
+      if (item.length) { return item; }
+    });
+
+// Bind click handler to menu items
+
+// Bind to scroll
+$(window).scroll(function(){
+   // Get container scroll position
+   var fromTop = $(this).scrollTop()+topMenuHeight;
+   
+   // Get id of current scroll item
+   var cur = scrollItems.map(function(){
+     if ($(this).offset().top < fromTop)
+       return this;
+   });
+   // Get the id of the current element
+   cur = cur[cur.length-1];
+   var id = cur && cur.length ? cur[0].id : "";
+   
+   if (lastId !== id) {
+       lastId = id;
+       // Set/remove active class
+       menuItems
+         .parent().removeClass("active")
+         .end().filter("[href=#"+id+"]").parent().addClass("active");
+   }                   
+});
+
+</script>
+
+<!-- scroll unveal -->
+<script>
+$(document).ready(function() {
+    
+    /* Every time the window is scrolled ... */
+    $(window).scroll( function(){
+    
+        /* Check the location of each desired element */
+        $('.hideme').each( function(i){
+            
+            var bottom_of_object = $(this).position().top + $(this).outerHeight();
+            var bottom_of_window = $(window).scrollTop() + $(window).height();
+            
+            /* If the object is completely visible in the window, fade it it */
+            if( bottom_of_window > bottom_of_object ){
+                
+                $(this).animate({'opacity':'1'},500);
+                    
+            }
+            
+        }); 
+    
+    });
+    
+});
+</script>
+
+    </body>
+</html>
